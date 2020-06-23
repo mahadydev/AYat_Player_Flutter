@@ -1,0 +1,60 @@
+name: ayat_player_flutter_player
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.1.0+7
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  curved_navigation_bar: ^0.3.2
+  flutter_audio_query: ^0.3.4+2
+  flutter_icons: ^1.1.0
+  shared_preferences: ^0.5.7+3
+  provider: ^4.1.3
+  foldable_sidebar: ^1.0.0
+  carousel_slider: ^2.1.0
+  cached_network_image: ^2.2.0+1
+  launch_review: ^2.0.0
+  flutter_email_sender: ^3.0.1
+  share: ^0.6.4+3
+  move_to_background: ^1.0.1
+  fancy_dialog: ^1.0.3
+  image_picker: ^0.6.7+2
+  swipedetector: ^1.2.0
+  assets_audio_player: ^2.0.5+5
+  flappy_search_bar: ^1.7.2
+  url_launcher: ^5.4.11
+  modal_bottom_sheet: ^0.1.6+1
+
+  
+dev_dependencies: 
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/
+    
+  fonts:
+    - family: MetalMania
+      fonts:
+        - asset: fonts/MetalMania-Regular.ttf
+
+    - family: RobotoSlab
+      fonts:
+        - asset: fonts/RobotoSlab-Light.ttf
+          weight: 300
+        - asset: fonts/RobotoSlab-Regular.ttf
+          weight: 400
+        - asset: fonts/RobotoSlab-Medium.ttf
+          weight: 500
+        - asset: fonts/RobotoSlab-Bold.ttf
+          weight: 700
