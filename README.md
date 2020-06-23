@@ -7,7 +7,7 @@
 ## 🆕 A Beautiful music player for Android music lovers 
 
 ## Screenshots
-|<img src="screenshots/graphic-banner.png" width="500"|
+| <img src="screenshots/graphic-banner.png" width="600"/>|
 |:---:|
 |AYaT Player|
 ### App Themes
