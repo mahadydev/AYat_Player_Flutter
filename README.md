@@ -7,11 +7,11 @@
 ## 🆕 A Beautiful music player for Android music lovers 
 
 ## Screenshots
-|<img src="screenshots/graphic-banner.png"width="500"|
+|<img src="screenshots/graphic-banner.png" width="500"|
 |:---:|
 |AYaT Player|
 ### App Themes
-| <img src="screenshots/home-dark.png" width="300"/> | <img src="screenshots/home_light.png" width="300"/> 
+| <img src="screenshots/home-dark.png" width="300"/> | <img src="screenshots/home-light.png" width="300"/> 
 |:---:|:---:|
 |Dark| Light|
 
@@ -26,13 +26,13 @@
 |Classic| Modern|
 
 
-### 🧭 Navigation never made easier 
+### 🧭 Easy Navigation 
 Self-explanatory interface without overloaded menus
 
 ### 🎨 Colorful
 You can choose between two different main themes: Light Theme, and Just black for AMOLED displays. Theme comes with default beautiful accent.
 
-### 🏠 Home
+### 🏠 Dashboard
 Dashboard has beautiful carousel with music related picture from unsplash.Get random songs to start with. Also included Albums , playlist , artist . You will love it.
 
 
@@ -54,7 +54,7 @@ I am trying my best to bring you the best user experience. More features are on 
 way.
 
 In any case, you find or notice any Bugs/ Crashes please report them by
-sending us an [e-mail](mailto:mahadydev@gmail.com). I will try to respond or fix Bugs/ Crashes as soon as
+sending me an [e-mail](mailto:mahadydev@gmail.com). I will try to respond or fix Bugs/ Crashes as soon as
 possible.
 
 ### 🗂️ License
