@@ -1,11 +1,11 @@
-# AYaT Player 
+# AYaT Player 🎧
 
 [![Generic badge](https://img.shields.io/badge/Platform-Android-green.svg)](https://github.com/mahadydev/AYat_Player_Flutter)
 [![Generic badge](https://img.shields.io/badge/minSdkVersion-21-green.svg)](https://github.com/mahadydev/AYat_Player_Flutter)
 [![Generic badge](https://img.shields.io/badge/Download-Google_Play-green.svg)](https://play.google.com/store/apps/details?id=com.mahadydev.ayat_player)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://github.com/mahadydev/AYat_Player_Flutter/blob/master/licence.txt)
 ## 🆕 A Beautiful music player for Android music lovers 
-
+Written in dart/flutter with ❤
 ## Screenshots
 | <img src="screenshots/graphic-banner.png" width="600"/>|
 |:---:|
