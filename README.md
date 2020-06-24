@@ -1,17 +1,17 @@
-# AYaT Player 
+# AYaT Player 🎧
 
 [![Generic badge](https://img.shields.io/badge/Platform-Android-green.svg)](https://github.com/mahadydev/AYat_Player_Flutter)
 [![Generic badge](https://img.shields.io/badge/minSdkVersion-21-green.svg)](https://github.com/mahadydev/AYat_Player_Flutter)
 [![Generic badge](https://img.shields.io/badge/Download-Google_Play-green.svg)](https://play.google.com/store/apps/details?id=com.mahadydev.ayat_player)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://github.com/mahadydev/AYat_Player_Flutter/blob/master/licence.txt)
 ## 🆕 A Beautiful music player for Android music lovers 
-
+Written in dart/flutter with ❤
 ## Screenshots
-|<img src="screenshots/graphic-banner.png"width="500"|
+| <img src="screenshots/graphic-banner.png" width="600"/>|
 |:---:|
 |AYaT Player|
 ### App Themes
-| <img src="screenshots/home-dark.png" width="300"/> | <img src="screenshots/home_light.png" width="300"/> 
+| <img src="screenshots/home-dark.png" width="300"/> | <img src="screenshots/home-light.png" width="300"/> 
 |:---:|:---:|
 |Dark| Light|
 
@@ -26,13 +26,13 @@
 |Classic| Modern|
 
 
-### 🧭 Navigation never made easier 
+### 🧭 Easy Navigation 
 Self-explanatory interface without overloaded menus
 
 ### 🎨 Colorful
 You can choose between two different main themes: Light Theme, and Just black for AMOLED displays. Theme comes with default beautiful accent.
 
-### 🏠 Home
+### 🏠 Dashboard
 Dashboard has beautiful carousel with music related picture from unsplash.Get random songs to start with. Also included Albums , playlist , artist . You will love it.
 
 
@@ -54,7 +54,7 @@ I am trying my best to bring you the best user experience. More features are on 
 way.
 
 In any case, you find or notice any Bugs/ Crashes please report them by
-sending us an [e-mail](mailto:mahadydev@gmail.com). I will try to respond or fix Bugs/ Crashes as soon as
+sending me an [e-mail](mailto:mahadydev@gmail.com). I will try to respond or fix Bugs/ Crashes as soon as
 possible.
 
 ### 🗂️ License
