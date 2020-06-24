@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import '../provider/audio_player.dart';
 import '../provider/audio_query.dart';
 import 'package:fancy_dialog/FancyAnimation.dart';
@@ -8,7 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_audio_query/flutter_audio_query.dart';
 import 'package:provider/provider.dart';
-
+import 'package:share_extend/share_extend.dart';
 import 'float_modal.dart';
 
 class ModalFit extends StatelessWidget {
@@ -76,6 +78,19 @@ class ModalFit extends StatelessWidget {
                           itemCount: _query.playlist.length ?? 0,
                         ),
                 ),
+              );
+            },
+          ),
+          Divider(),
+          ListTile(
+            title: Text('Share'),
+            leading: Icon(Icons.share, color: Theme.of(context).accentColor),
+            onTap: () {
+              Navigator.of(context).pop();
+              ShareExtend.share(
+                File(songs[index].filePath).path,
+                'audio',
+                sharePanelTitle: songs[index].title,
               );
             },
           ),

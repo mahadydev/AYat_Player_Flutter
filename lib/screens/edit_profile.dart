@@ -48,6 +48,7 @@ class _EditProfileState extends State<EditProfile> {
     Size size = MediaQuery.of(context).size;
     final _pref = Provider.of<SharedPersistantSettings>(context);
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(),
       body: SizedBox.expand(
         child: ListView(

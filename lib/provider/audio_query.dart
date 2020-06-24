@@ -42,10 +42,14 @@ class AudioQuery with ChangeNotifier {
     /// getting all songs available on device storage
     List<SongInfo> s =
         await _audioQuery.getSongs(sortType: sortType ?? SongSortType.DEFAULT);
-    for (var song in s) {
-      if (int.parse(song.duration) / 1000 > _filterSec) temp.add(song);
+    try {
+      for (var song in s) {
+        if (int.parse(song.duration) / 1000 > _filterSec) temp.add(song);
+      }
+      this._songs = temp;
+    } catch (e) {
+      print(e);
     }
-    this._songs = temp;
     notifyListeners();
   }
 

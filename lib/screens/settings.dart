@@ -1,3 +1,6 @@
+import 'package:ayat_player_flutter_player/model/iap.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 import '../data/sharedpref.dart';
 import '../screens/custom_radio.dart';
 import '../util/constants.dart';
@@ -17,6 +20,20 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+  IAP _iap;
+
+  @override
+  void initState() {
+    _iap = IAP()..initIAPs();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _iap.endBillingConnection();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -268,7 +285,6 @@ class _SettingsState extends State<Settings> {
                     ),
                     Divider(),
                     ListTile(
-                      enabled: false,
                       leading: Icon(
                         MaterialIcons.card_giftcard,
                         color: Theme.of(context).accentColor,
@@ -281,6 +297,21 @@ class _SettingsState extends State<Settings> {
                         'App Development is Costly and Time Consuming ! If You Think I Deserve to Get Paid for My Hard Work,You Can Leave Some Money Here',
                         style: Constants.kListTileSubTitle,
                       ),
+                      onTap: () async {
+                        await _iap.consumeAllItems();
+                        await _iap.getProducts();
+                        if (_iap.items.length > 0) {
+                          _iap.requestPurchase(_iap.items[0]);
+                        } else
+                          Fluttertoast.showToast(
+                              msg: "Error getting product",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.CENTER,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Theme.of(context).accentColor,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
+                      },
                     ),
                     Divider(),
                     ListTile(
