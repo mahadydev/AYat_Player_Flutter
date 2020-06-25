@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:ayat_player_flutter_player/widgets/create_playlist_dialog.dart';
+
 import '../provider/audio_player.dart';
 import '../provider/audio_query.dart';
 import 'package:fancy_dialog/FancyAnimation.dart';
@@ -59,23 +61,44 @@ class ModalFit extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.4,
                   child: _query.playlist.length < 1
                       ? Center(
-                          child: Text('No Playlist Found'),
-                        )
-                      : ListView.builder(
-                          itemBuilder: (context, playListIndex) => ListTile(
-                            leading: CircleAvatar(
-                              child: Icon(Icons.playlist_add,
-                                  color: Theme.of(context).accentColor),
-                            ),
-                            title: Text(
-                                _query.playlist[playListIndex].name ?? '-'),
-                            onTap: () async {
-                              _query.addSongsListToPlayList(
-                                  songs[index], playListIndex);
-                              Navigator.of(context).pop();
-                            },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: <Widget>[
+                              Text('No Playlist Found'),
+                              IconButton(
+                                  icon: Icon(
+                                    Icons.playlist_add,
+                                    color: Theme.of(context).accentColor,
+                                  ),
+                                  onPressed: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) =>
+                                          CreatePlayListDialog(),
+                                    );
+                                  }),
+                            ],
                           ),
-                          itemCount: _query.playlist.length ?? 0,
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 20),
+                          child: ListView.builder(
+                            itemBuilder: (context, playListIndex) => ListTile(
+                              leading: CircleAvatar(
+                                child: Icon(Icons.playlist_add,
+                                    color: Theme.of(context).accentColor),
+                              ),
+                              title: Text(
+                                  _query.playlist[playListIndex].name ?? '-'),
+                              onTap: () async {
+                                _query.addSongsListToPlayList(
+                                    songs[index], playListIndex);
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                            itemCount: _query.playlist.length ?? 0,
+                          ),
                         ),
                 ),
               );

@@ -37,9 +37,12 @@ class GridTileWidget extends StatelessWidget {
             ),
           ),
           child: imagePath != null
-              ? Image.file(
-                  File(imagePath),
-                  fit: BoxFit.cover,
+              ? Hero(
+                  tag: imagePath,
+                  child: Image.file(
+                    File(imagePath),
+                    fit: BoxFit.cover,
+                  ),
                 )
               : Image.asset(
                   'assets/empty.png',

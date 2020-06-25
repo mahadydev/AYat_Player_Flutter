@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_audio_query/flutter_audio_query.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AudioQuery with ChangeNotifier {
@@ -135,8 +136,35 @@ class AudioQuery with ChangeNotifier {
   ///remove  songs from PlayList
   removeSongsListForPlayList(SongInfo song, playlistIndex) async {
     List<PlaylistInfo> _temp = _playlist;
-    await _temp[playlistIndex].removeSong(song: song);
-    this._playlist = _temp;
-    getSongsFromPlayList(this._playlist[playlistIndex]);
+    try {
+      await _temp[playlistIndex].removeSong(song: song);
+      this._playlist = _temp;
+      getSongsFromPlayList(this._playlist[playlistIndex]);
+    } catch (e) {
+      Fluttertoast.showToast(msg: e.toString());
+    }
+  }
+
+  ///create new playlist
+  createNewPlayList(String playlistName) async {
+    try {
+      await FlutterAudioQuery.createPlaylist(playlistName: playlistName);
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: 'Choose different name',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.red,
+          fontSize: 16.0);
+    }
+
+    getAllPlaylistInfo();
+  }
+
+  ///remove a playlist
+  removePlayList(PlaylistInfo playlist) async {
+    await FlutterAudioQuery.removePlaylist(playlist: playlist);
+    getAllPlaylistInfo();
   }
 }

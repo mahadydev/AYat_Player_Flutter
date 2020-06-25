@@ -9,6 +9,7 @@ import '../widgets/custom_drawer.dart';
 import '../provider/audio_player.dart';
 import '../util/constants.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import '../widgets/emptyscreen_widget.dart';
 import 'package:swipedetector/swipedetector.dart';
 import '../provider/audio_query.dart';
 import 'package:flutter/material.dart';
@@ -122,16 +123,7 @@ class _MusicListState extends State<MusicList> {
           ),
           screenContents: _query.songs.length == 0 ||
                   _query.songs.length == null
-              ? Center(
-                  child: Container(
-                    height: MediaQuery.of(context).size.width / 2,
-                    width: MediaQuery.of(context).size.width / 2,
-                    child: Image.asset(
-                      'assets/empty.png',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                )
+              ? EmptyScreenWidget()
               : CustomScrollView(
                   shrinkWrap: true,
                   slivers: <Widget>[

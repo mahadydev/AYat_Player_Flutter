@@ -36,18 +36,21 @@ class DashboardArtistList extends StatelessWidget {
                   _query.setCurrentArtistSelected(_query.artistList[index]);
                   Navigator.of(context).pushNamed('/songfromartist');
                 },
-                child: ClipOval(
-                  child: Container(
-                    margin: const EdgeInsets.only(right: 10),
-                    height: 150,
-                    width: 150,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: _query.artistList[index].artistArtPath != null
-                            ? FileImage(
-                                File(_query.artistList[index].artistArtPath))
-                            : AssetImage('assets/empty.png'),
+                child: Hero(
+                  tag: _query.artistList[index].artistArtPath,
+                  child: ClipOval(
+                    child: Container(
+                      margin: const EdgeInsets.only(right: 10),
+                      height: 150,
+                      width: 150,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: _query.artistList[index].artistArtPath != null
+                              ? FileImage(
+                                  File(_query.artistList[index].artistArtPath))
+                              : AssetImage('assets/empty.png'),
+                        ),
                       ),
                     ),
                   ),

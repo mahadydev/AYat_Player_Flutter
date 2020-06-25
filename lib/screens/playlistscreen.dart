@@ -1,3 +1,7 @@
+import 'package:fluttertoast/fluttertoast.dart';
+
+import '../widgets/create_playlist_dialog.dart';
+import '../widgets/emptyscreen_widget.dart';
 import '../data/sharedpref.dart';
 import '../screens/playlist_to_songList.dart';
 import '../util/constants.dart';
@@ -16,9 +20,11 @@ class PlayListScreen extends StatefulWidget {
 
 class _PlayListScreenState extends State<PlayListScreen> {
   FSBStatus drawerStatus;
+
   @override
   Widget build(BuildContext context) {
     final _pref = Provider.of<SharedPersistantSettings>(context);
+    final _query = Provider.of<AudioQuery>(context);
     return Scaffold(
       appBar: AppBar(
         brightness: _pref.isDarkMode ? Brightness.light : Brightness.dark,
@@ -30,17 +36,30 @@ class _PlayListScreenState extends State<PlayListScreen> {
         ),
         automaticallyImplyLeading: false,
         leading: IconButton(
-            icon: Icon(
-              MaterialCommunityIcons.menu,
-              color: Theme.of(context).backgroundColor,
-            ),
-            onPressed: () {
-              setState(() {
-                drawerStatus = drawerStatus == FSBStatus.FSB_OPEN
-                    ? FSBStatus.FSB_CLOSE
-                    : FSBStatus.FSB_OPEN;
-              });
-            }),
+          icon: Icon(
+            MaterialCommunityIcons.menu,
+            color: Theme.of(context).backgroundColor,
+          ),
+          onPressed: () {
+            setState(() {
+              drawerStatus = drawerStatus == FSBStatus.FSB_OPEN
+                  ? FSBStatus.FSB_CLOSE
+                  : FSBStatus.FSB_OPEN;
+            });
+          },
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.playlist_add,
+                color: Theme.of(context).backgroundColor),
+            onPressed: () async {
+              showDialog(
+                context: context,
+                builder: (context) => CreatePlayListDialog(),
+              );
+            },
+          ),
+        ],
       ),
       body: SwipeDetector(
         onSwipeRight: () {
@@ -65,53 +84,41 @@ class _PlayListScreenState extends State<PlayListScreen> {
               });
             },
           ),
-          screenContents: Column(
-            children: <Widget>[
-              Flexible(
-                child: Consumer<AudioQuery>(
-                  builder: (context, AudioQuery _query, _) => _query
-                                  .playlist.length ==
-                              0 ||
-                          _query.playlist.length == null
-                      ? Center(
-                          child: Container(
-                            height: MediaQuery.of(context).size.width / 2,
-                            width: MediaQuery.of(context).size.width / 2,
-                            child: Image.asset(
-                              'assets/empty.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        )
-                      : ListView.builder(
-                          itemBuilder: (context, index) => ListTile(
-                            leading: CircleAvatar(
-                              child: Icon(Icons.playlist_play,
-                                  color: Theme.of(context).accentColor),
-                            ),
-                            title: Text(
-                              _query.playlist[index].name ?? '-',
-                              style: Constants.kListTileTitle,
-                            ),
-                            onTap: () async {
-                              _query
-                                  .getSongsFromPlayList(_query.playlist[index]);
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => PlayListSongs(
-                                    playlistIndex: index,
-                                    appBarTitle: _query.playlist[index].name,
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                          itemCount: _query.playlist.length ?? 0,
+          screenContents: _query.playlist.length > 0
+              ? ListView.builder(
+                  itemBuilder: (context, index) => ListTile(
+                    leading: Icon(Icons.playlist_play,
+                        color: Theme.of(context).accentColor),
+                    title: Text(
+                      _query.playlist[index].name ?? 'Playlist $index',
+                      style: Constants.kListTileTitle,
+                    ),
+                    subtitle: Text(
+                        'Song: ${_query.playlist[index].memberIds.length}'),
+                    trailing: IconButton(
+                        icon: Icon(
+                          Icons.delete,
+                          color: Colors.red,
                         ),
-                ),
-              ),
-            ],
-          ),
+                        onPressed: () async {
+                          await _query.removePlayList(_query.playlist[index]);
+                          Fluttertoast.showToast(msg: 'removed playlist');
+                        }),
+                    onTap: () async {
+                      _query.getSongsFromPlayList(_query.playlist[index]);
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => PlayListSongs(
+                            playlistIndex: index,
+                            appBarTitle: _query.playlist[index].name,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                  itemCount: _query.playlist.length ?? 0,
+                )
+              : EmptyScreenWidget(),
         ),
       ),
     );

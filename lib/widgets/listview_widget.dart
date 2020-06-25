@@ -12,10 +12,13 @@ class ListTileWidget extends StatelessWidget {
     return ListTile(
       title: Text(title, style: Constants.kListTileTitle),
       subtitle: Text(sub, style: Constants.kListTileSubTitle),
-      leading: CircleAvatar(
-        backgroundImage: imagePath != null
-            ? FileImage(File(imagePath))
-            : AssetImage('assets/empty.png'),
+      leading: Hero(
+        tag: imagePath,
+        child: CircleAvatar(
+          backgroundImage: imagePath != null
+              ? FileImage(File(imagePath))
+              : AssetImage('assets/empty.png'),
+        ),
       ),
     );
   }

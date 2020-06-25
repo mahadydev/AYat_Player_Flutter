@@ -43,18 +43,21 @@ class DashBoardAlbumList extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) => Center(
                 child: _pref.homeAlbumGrid
-                    ? ClipOval(
-                        child: Container(
-                          margin: const EdgeInsets.only(right: 10),
-                          height: 175,
-                          width: 175,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              image: _query.albumList[index].albumArt != null
-                                  ? FileImage(
-                                      File(_query.albumList[index].albumArt))
-                                  : AssetImage('assets/empty.png'),
+                    ? Hero(
+                        tag: _query.albumList[index].albumArt,
+                        child: ClipOval(
+                          child: Container(
+                            margin: const EdgeInsets.only(right: 10),
+                            height: 175,
+                            width: 175,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: _query.albumList[index].albumArt != null
+                                    ? FileImage(
+                                        File(_query.albumList[index].albumArt))
+                                    : AssetImage('assets/empty.png'),
+                              ),
                             ),
                           ),
                         ),
@@ -73,9 +76,13 @@ class DashBoardAlbumList extends StatelessWidget {
                               height: 175,
                               width: MediaQuery.of(context).size.width * 0.8,
                               child: _query.albumList[index].albumArt != null
-                                  ? Image.file(
-                                      File(_query.albumList[index].albumArt),
-                                      fit: BoxFit.cover)
+                                  ? Hero(
+                                      tag: _query.albumList[index].albumArt,
+                                      child: Image.file(
+                                          File(
+                                              _query.albumList[index].albumArt),
+                                          fit: BoxFit.cover),
+                                    )
                                   : Image.asset(('assets/empty.png'),
                                       fit: BoxFit.cover),
                               decoration: BoxDecoration(

@@ -4,8 +4,9 @@ class ThemeConstants {
   //Colors for theme
   static Color lightPrimary = Color(0xfffcfcff);
   static Color darkPrimary = Colors.black;
-  static Color darkAccent = Color(0xffffbd00); //Color(0xffffe66d);
-  static Color lightAccent = Color.fromRGBO(69, 123, 157, 1);
+  static Color darkAccent = Color(0xffffbd00);
+  static Color lightAccent =
+      Color(0xff7678ed); //Color.fromRGBO(69, 123, 157, 1);
   static Color lightBG = Color(0xfffcfcff);
   static Color darkBG = Colors.black;
 

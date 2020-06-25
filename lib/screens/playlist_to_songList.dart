@@ -1,5 +1,8 @@
 import 'dart:io';
 
+import 'package:ayat_player_flutter_player/widgets/emptyscreen_widget.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 import '../data/sharedpref.dart';
 import '../provider/audio_player.dart';
 import '../provider/audio_query.dart';
@@ -8,10 +11,16 @@ import '../widgets/floatingbutton.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class PlayListSongs extends StatelessWidget {
+class PlayListSongs extends StatefulWidget {
   final int playlistIndex;
   final String appBarTitle;
   PlayListSongs({this.playlistIndex, this.appBarTitle});
+
+  @override
+  _PlayListSongsState createState() => _PlayListSongsState();
+}
+
+class _PlayListSongsState extends State<PlayListSongs> {
   @override
   Widget build(BuildContext context) {
     final _query = Provider.of<AudioQuery>(context);
@@ -24,12 +33,11 @@ class PlayListSongs extends StatelessWidget {
         brightness: _pref.isDarkMode ? Brightness.light : Brightness.dark,
         backgroundColor: Theme.of(context).accentColor,
         title: Text(
-          appBarTitle,
+          widget.appBarTitle,
           maxLines: 1,
           style: Constants.kAppBarTitleTextStyle
               .copyWith(color: Theme.of(context).backgroundColor),
         ),
-        centerTitle: true,
         automaticallyImplyLeading: false,
         leading: IconButton(
             icon: Icon(
@@ -67,20 +75,19 @@ class PlayListSongs extends StatelessWidget {
                       _query.currentSongListforPlayList, index);
                 },
                 trailing: IconButton(
-                    icon: Icon(Icons.delete),
+                    icon: Icon(
+                      Icons.delete,
+                      color: Colors.red,
+                    ),
                     onPressed: () {
+                      Fluttertoast.showToast(msg: 'removed song from playlist');
                       _query.removeSongsListForPlayList(
                           _query.currentSongListforPlayList[index],
-                          playlistIndex);
+                          widget.playlistIndex);
                     }),
               ),
             )
-          : Center(
-              child: Image.asset(
-                'assets/empty.png',
-                fit: BoxFit.contain,
-              ),
-            ),
+          : EmptyScreenWidget(),
     );
   }
 }

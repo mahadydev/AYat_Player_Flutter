@@ -47,9 +47,16 @@ class SongListFromArtist extends StatelessWidget {
                 children: <Widget>[
                   _query.currentArtist.artistArtPath != null
                       ? Expanded(
-                          child: Image.file(
-                            File(_query.currentArtist.artistArtPath),
-                            fit: BoxFit.cover,
+                          child: Hero(
+                            tag: _query.currentArtist.artistArtPath,
+                            child: ClipRRect(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(16)),
+                              child: Image.file(
+                                File(_query.currentArtist.artistArtPath),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
                         )
                       : Expanded(
@@ -138,8 +145,9 @@ class SongListFromArtist extends StatelessWidget {
                               style: Constants.kListTileTitle.copyWith(
                                 color: Theme.of(context).backgroundColor,
                               ),
+                              maxLines: 1,
                             ),
-                            trailing: Text(
+                            subtitle: Text(
                               _printDuration(
                                 Duration(
                                   milliseconds: (int.parse(_query
@@ -151,20 +159,26 @@ class SongListFromArtist extends StatelessWidget {
                                 color: Theme.of(context).backgroundColor,
                               ),
                             ),
-                            onLongPress: () {
-                              showFloatingModalBottomSheet(
-                                backgroundColor:
-                                    Theme.of(context).backgroundColor,
-                                context: context,
-                                builder: (context, scrollController) =>
-                                    ModalFit(
-                                  scrollController: scrollController,
-                                  songs: _query.currentSongListforArtist,
-                                  index: index,
-                                  audio: _audio,
-                                ),
-                              );
-                            },
+                            trailing: IconButton(
+                              icon: Icon(
+                                Icons.more_vert,
+                                color: Theme.of(context).backgroundColor,
+                              ),
+                              onPressed: () {
+                                showFloatingModalBottomSheet(
+                                  backgroundColor:
+                                      Theme.of(context).backgroundColor,
+                                  context: context,
+                                  builder: (context, scrollController) =>
+                                      ModalFit(
+                                    scrollController: scrollController,
+                                    songs: _query.currentSongListforAlbum,
+                                    index: index,
+                                    audio: _audio,
+                                  ),
+                                );
+                              },
+                            ),
                           ),
                           itemCount:
                               _query.currentSongListforArtist.length ?? 0,

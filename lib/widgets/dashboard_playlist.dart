@@ -56,18 +56,21 @@ class DashBoardPlayList extends StatelessWidget {
                         ? Center(
                             child: Text(
                               _query.playlist[index].name,
+                              maxLines: 1,
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                 fontFamily: 'RobotoSlab',
+                                color: Colors.white,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
                           )
-                        : Text('No Name'),
+                        : Text('-'),
                     decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            colors: [Colors.blue, Colors.lightBlueAccent])),
+                      gradient: LinearGradient(
+                          colors: [Colors.blue, Colors.lightBlueAccent]),
+                    ),
                   ),
                 ),
                 itemCount: _query.playlist.length,
