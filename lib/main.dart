@@ -25,17 +25,18 @@ class AyatPlayer extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider.value(value: ThemeConstants()),
         ChangeNotifierProvider.value(value: SharedPersistantSettings()),
         ChangeNotifierProvider.value(value: AudioQuery()),
         ChangeNotifierProvider.value(value: AudioPlayer()),
       ],
-      child: Consumer<SharedPersistantSettings>(
-        builder: (context, SharedPersistantSettings _pref, _) => MaterialApp(
+      child: Consumer<ThemeConstants>(
+        builder: (context, ThemeConstants themeConstants, _) => MaterialApp(
           title: Constants.appName,
           debugShowCheckedModeBanner: false,
-          theme: _pref.isDarkMode
-              ? ThemeConstants.darkTheme
-              : ThemeConstants.lightTheme,
+          theme: themeConstants.themeData.copyWith(
+              accentColor: themeConstants.accentColor,
+              toggleableActiveColor: themeConstants.accentColor),
           routes: routes,
         ),
       ),

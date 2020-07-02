@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:ayat_player_flutter_player/util/theme_constants.dart';
 import '../data/sharedpref.dart';
 import '../provider/audio_player.dart';
 import '../widgets/nowplaying_icon.dart';
@@ -48,6 +49,7 @@ class _NowPlayingNewState extends State<NowPlayingNew>
     //variables
     Size _size = MediaQuery.of(context).size;
     final AudioPlayer _audio = Provider.of<AudioPlayer>(context);
+    final ThemeConstants _prefTheme = Provider.of<ThemeConstants>(context);
     final SharedPersistantSettings _pref =
         Provider.of<SharedPersistantSettings>(context);
 
@@ -173,7 +175,7 @@ class _NowPlayingNewState extends State<NowPlayingNew>
                             child: Container(
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
-                                  gradient: _pref.isDarkMode
+                                  gradient: _prefTheme.isDarkModeON
                                       ? LinearGradient(colors: [
                                           Color(0xffec008c),
                                           Color(0xfffc6767),

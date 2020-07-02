@@ -1,4 +1,6 @@
 import 'package:ayat_player_flutter_player/model/iap.dart';
+import 'package:ayat_player_flutter_player/util/theme_constants.dart';
+import 'package:flutter_material_color_picker/flutter_material_color_picker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../data/sharedpref.dart';
@@ -13,6 +15,7 @@ import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 import '../provider/audio_query.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../widgets/material_color_dialog.dart';
 
 class Settings extends StatefulWidget {
   @override
@@ -72,14 +75,70 @@ class _SettingsState extends State<Settings> {
                         'Switch to Dark/Light theme',
                         style: Constants.kListTileSubTitle,
                       ),
-                      trailing: Consumer<SharedPersistantSettings>(
-                        builder:
-                            (context, SharedPersistantSettings _pref, child) =>
-                                Switch(
-                          value: _pref.isDarkMode,
+                      trailing: Consumer<ThemeConstants>(
+                        builder: (context, ThemeConstants _pref, _) => Switch(
+                          value: _pref.isDarkModeON,
                           onChanged: (value) {
-                            _pref.setDarkMode(value);
+                            _pref.toggleTheme(value);
                           },
+                        ),
+                      ),
+                    ),
+                    Divider(),
+                    Consumer<ThemeConstants>(
+                      builder: (context, ThemeConstants _pref, _) => ListTile(
+                        onTap: () async {
+                          openDialog(
+                            "Accent Color picker",
+                            MaterialColorPicker(
+                              colors: accentColors,
+                              selectedColor: Theme.of(context).accentColor,
+                              onColorChange: (color) {
+                                _pref.setAccentColor(color);
+                              },
+                              circleSize:
+                                  MediaQuery.of(context).size.width * 0.15,
+                              spacing: 10,
+                            ),
+                            context,
+                          );
+                        },
+                        title: Text(
+                          'Accent Color',
+                          style: Constants.kListTileTitle,
+                        ),
+                        isThreeLine: true,
+                        subtitle: Text(
+                          'Switch to favorite accent color\nPlease note that some color requires you to change theme for better viewing experience with background and font color.',
+                          style: Constants.kListTileSubTitle,
+                        ),
+                        trailing: CircleAvatar(
+                          backgroundColor: _pref.accentColor ??
+                              Theme.of(context).accentColor,
+                        ),
+                      ),
+                    ),
+                    Divider(),
+                    Consumer<ThemeConstants>(
+                      builder: (context, ThemeConstants _pref, _) => ListTile(
+                        onTap: () {
+                          _pref.setNavIconAndAppbarTextColor(
+                              _pref.navbarAppvarColor == Colors.white
+                                  ? Colors.black
+                                  : Colors.white);
+                        },
+                        title: Text(
+                          'Appbar Text Color & Navbar Icon Color',
+                          style: Constants.kListTileTitle,
+                        ),
+                        isThreeLine: true,
+                        subtitle: Text(
+                          'Switch the color of navbar icon and appbar text to white or black to match the accent color and theme ',
+                          style: Constants.kListTileSubTitle,
+                        ),
+                        trailing: CircleAvatar(
+                          backgroundColor: _pref.navbarAppvarColor ??
+                              Theme.of(context).backgroundColor,
                         ),
                       ),
                     ),
@@ -442,30 +501,38 @@ class _SettingsState extends State<Settings> {
                     ),
                     Divider(),
                     ListTile(
-                        leading: Icon(
-                          MaterialCommunityIcons.history,
-                          color: Theme.of(context).accentColor,
-                        ),
-                        title: Text(
-                          'ChangeLog',
-                          style: Constants.kListTileTitle,
-                        ),
-                        subtitle: Text(
-                          'See whats new in this version',
-                          style: Constants.kListTileSubTitle,
-                        ),
-                        onTap: () async {
-                          if (await canLaunch(Constants.changeLog)) {
-                            await launch(Constants.changeLog);
-                          } else {
-                            throw 'Could not launch ${Constants.changeLog}';
-                          }
-                        }),
+                      leading: Icon(
+                        MaterialCommunityIcons.history,
+                        color: Theme.of(context).accentColor,
+                      ),
+                      title: Text(
+                        'ChangeLog',
+                        style: Constants.kListTileTitle,
+                      ),
+                      subtitle: Text(
+                        'See whats new in this version',
+                        style: Constants.kListTileSubTitle,
+                      ),
+                      onTap: () async {
+                        if (await canLaunch(Constants.changeLog)) {
+                          await launch(Constants.changeLog);
+                        } else {
+                          throw 'Could not launch ${Constants.changeLog}';
+                        }
+                      },
+                    ),
                   ],
                 ),
               ),
             ),
             ListTile(
+              onTap: () async {
+                if (await canLaunch(Constants.github)) {
+                  await launch(Constants.github);
+                } else {
+                  throw 'Could not launch ${Constants.github}';
+                }
+              },
               leading: CircleAvatar(
                 backgroundImage: AssetImage('assets/me.jpg'),
               ),

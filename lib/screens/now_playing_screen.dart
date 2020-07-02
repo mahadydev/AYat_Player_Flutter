@@ -252,7 +252,7 @@ class NowPlaying extends StatelessWidget {
                   ],
                 ),
               ),
-              BottomNowPlayingAyatBar(pref: _pref),
+              BottomNowPlayingAyatBar(),
             ],
           ),
         ),

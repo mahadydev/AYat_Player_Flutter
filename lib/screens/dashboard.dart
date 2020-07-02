@@ -30,14 +30,6 @@ class _DashBoardState extends State<DashBoard> {
     final _query = Provider.of<AudioQuery>(context);
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: Container(
-          height: 30,
-          child: Image.asset(
-            'assets/logo.png',
-            fit: BoxFit.contain,
-          ),
-        ),
         leading: IconButton(
             icon: Icon(
               MaterialCommunityIcons.menu,

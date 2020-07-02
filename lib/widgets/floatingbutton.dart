@@ -1,4 +1,5 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:ayat_player_flutter_player/util/theme_constants.dart';
 import '../data/sharedpref.dart';
 import '../provider/audio_player.dart';
 import 'package:flutter/material.dart';
@@ -13,12 +14,14 @@ class FloatingButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final _pref = Provider.of<SharedPersistantSettings>(context);
     final AudioPlayer _audio = Provider.of<AudioPlayer>(context);
+    final ThemeConstants _prefTheme = Provider.of<ThemeConstants>(context);
     return _audio.playerState == PlayerState.stop
         ? SizedBox(
             height: 0,
             width: 0,
           )
         : FloatingActionButton.extended(
+            backgroundColor: Theme.of(context).accentColor,
             heroTag: 'nowplaying',
             label: Container(
               width: MediaQuery.of(context).size.width * 0.5,
@@ -26,7 +29,9 @@ class FloatingButton extends StatelessWidget {
                   ? Text(
                       _audio.currentlyPlaying.audio.metas.title,
                       textAlign: TextAlign.start,
-                      style: TextStyle(fontFamily: 'MetalMania'),
+                      style: TextStyle(
+                          fontFamily: 'MetalMania',
+                          color: _prefTheme.navbarAppvarColor ?? Colors.black),
                     )
                   : Text('Now Playing'),
             ),

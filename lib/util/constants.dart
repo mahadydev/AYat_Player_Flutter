@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Constants {
   static const String appName = 'AYaT Player';
-  static const String appVersion = '1.3.0';
+  static const String appVersion = '1.4.0';
   static const String privacyPolicyUrl =
       'https://mahadydev.github.io/privacy-policy/ayat-player-privacy-policy.html';
 
@@ -10,6 +10,7 @@ class Constants {
       'https://mahadydev.github.io/faq/ayat-player-faq.html';
   static const String changeLog =
       'https://mahadydev.github.io/changelog/ayat-player-changelog.html';
+  static const String github = 'https://github.com/mahadydev';
 
   static const TextStyle kSettingsCategoryTextStyle = TextStyle(
     fontFamily: 'MetalMania',

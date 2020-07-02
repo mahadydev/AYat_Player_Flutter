@@ -1,9 +1,8 @@
 import 'dart:io';
 
-import 'package:ayat_player_flutter_player/widgets/emptyscreen_widget.dart';
+import '../util/theme_constants.dart';
+import '../widgets/emptyscreen_widget.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
-import '../data/sharedpref.dart';
 import '../provider/audio_player.dart';
 import '../provider/audio_query.dart';
 import '../util/constants.dart';
@@ -25,24 +24,26 @@ class _PlayListSongsState extends State<PlayListSongs> {
   Widget build(BuildContext context) {
     final _query = Provider.of<AudioQuery>(context);
     final _player = Provider.of<AudioPlayer>(context);
-    final _pref = Provider.of<SharedPersistantSettings>(context);
+    final _pref = Provider.of<ThemeConstants>(context);
 
     return Scaffold(
       floatingActionButton: FloatingButton(),
       appBar: AppBar(
-        brightness: _pref.isDarkMode ? Brightness.light : Brightness.dark,
+        brightness: _pref.isDarkModeON ? Brightness.light : Brightness.dark,
         backgroundColor: Theme.of(context).accentColor,
         title: Text(
           widget.appBarTitle,
           maxLines: 1,
-          style: Constants.kAppBarTitleTextStyle
-              .copyWith(color: Theme.of(context).backgroundColor),
+          style: Constants.kAppBarTitleTextStyle.copyWith(
+              color:
+                  _pref.navbarAppvarColor ?? Theme.of(context).backgroundColor),
         ),
         automaticallyImplyLeading: false,
         leading: IconButton(
             icon: Icon(
               Icons.arrow_back,
-              color: Theme.of(context).backgroundColor,
+              color:
+                  _pref.navbarAppvarColor ?? Theme.of(context).backgroundColor,
             ),
             onPressed: () {
               Navigator.of(context).pop(false);

@@ -1,21 +1,15 @@
-import '../data/sharedpref.dart';
+import 'package:ayat_player_flutter_player/util/theme_constants.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 class BottomNowPlayingAyatBar extends StatelessWidget {
-  const BottomNowPlayingAyatBar({
-    Key key,
-    @required SharedPersistantSettings pref,
-  })  : _pref = pref,
-        super(key: key);
-
-  final SharedPersistantSettings _pref;
-
   @override
   Widget build(BuildContext context) {
+    final _pref = Provider.of<ThemeConstants>(context);
     return Container(
       decoration: BoxDecoration(
-        gradient: _pref.isDarkMode
+        gradient: _pref.isDarkModeON
             ? LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,

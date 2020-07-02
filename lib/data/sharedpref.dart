@@ -5,7 +5,6 @@ class SharedPersistantSettings with ChangeNotifier {
   SharedPreferences _prefs;
 
   ///initial values
-  bool _isDarkMode = false;
   bool _isFilter30Sec = false;
   bool _isCarousel = true;
   bool _homeAlbumGrid = false;
@@ -19,7 +18,6 @@ class SharedPersistantSettings with ChangeNotifier {
   String _photo = '';
 
   ///getter
-  bool get isDarkMode => _isDarkMode;
   bool get isFilter30Sec => _isFilter30Sec;
   bool get isCarousel => _isCarousel;
   bool get homeAlbumGrid => _homeAlbumGrid;
@@ -43,7 +41,7 @@ class SharedPersistantSettings with ChangeNotifier {
   ///initial value will be set on start of the app
   _loadSettings() async {
     await _initPref();
-    _isDarkMode = _prefs.getBool('isDarkMode') ?? false;
+
     _isCarousel = _prefs.getBool('isCarousel') ?? true;
     _homeAlbumGrid = _prefs.getBool('homeAlbumGrid') ?? false;
     _volumeControl = _prefs.getBool('volumeControl') ?? true;
@@ -59,7 +57,7 @@ class SharedPersistantSettings with ChangeNotifier {
   }
 
   ///set image path to device
-  setImage(String path) async {
+  void setImage(String path) async {
     _photo = path;
     await _initPref();
     _prefs.setString('photo', _photo);
@@ -73,14 +71,6 @@ class SharedPersistantSettings with ChangeNotifier {
     await _initPref();
     _prefs.setString('nickname', _nickname);
     _prefs.setString('email', _email);
-    notifyListeners();
-  }
-
-  ///set and save darkmode Settings
-  setDarkMode(bool d) async {
-    _isDarkMode = d;
-    await _initPref();
-    _prefs.setBool('isDarkMode', _isDarkMode);
     notifyListeners();
   }
 

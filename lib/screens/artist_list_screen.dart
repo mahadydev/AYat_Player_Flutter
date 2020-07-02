@@ -1,3 +1,5 @@
+import 'package:ayat_player_flutter_player/util/theme_constants.dart';
+
 import '../data/sharedpref.dart';
 import '../util/constants.dart';
 import '../widgets/custom_drawer.dart';
@@ -23,6 +25,7 @@ class _ArtistListScreenState extends State<ArtistListScreen> {
   FSBStatus drawerStatus;
   @override
   Widget build(BuildContext context) {
+    final _prefTheme = Provider.of<ThemeConstants>(context);
     final _pref = Provider.of<SharedPersistantSettings>(context);
     final _query = Provider.of<AudioQuery>(context);
 
@@ -30,16 +33,19 @@ class _ArtistListScreenState extends State<ArtistListScreen> {
       appBar: AppBar(
         title: Text(
           'Artist',
-          style: Constants.kAppBarTitleTextStyle
-              .copyWith(color: Theme.of(context).backgroundColor),
+          style: Constants.kAppBarTitleTextStyle.copyWith(
+              color: _prefTheme.navbarAppvarColor ??
+                  Theme.of(context).backgroundColor),
         ),
-        brightness: _pref.isDarkMode ? Brightness.light : Brightness.dark,
+        brightness:
+            _prefTheme.isDarkModeON ? Brightness.light : Brightness.dark,
         backgroundColor: Theme.of(context).accentColor,
         automaticallyImplyLeading: false,
         leading: IconButton(
             icon: Icon(
               MaterialCommunityIcons.menu,
-              color: Theme.of(context).backgroundColor,
+              color: _prefTheme.navbarAppvarColor ??
+                  Theme.of(context).backgroundColor,
             ),
             onPressed: () {
               setState(() {
@@ -52,7 +58,8 @@ class _ArtistListScreenState extends State<ArtistListScreen> {
           IconButton(
             icon: Icon(
               MaterialCommunityIcons.view_list,
-              color: Theme.of(context).backgroundColor,
+              color: _prefTheme.navbarAppvarColor ??
+                  Theme.of(context).backgroundColor,
             ),
             onPressed: () {
               _pref.setArtistListGridView(false);
@@ -61,7 +68,8 @@ class _ArtistListScreenState extends State<ArtistListScreen> {
           IconButton(
             icon: Icon(
               MaterialIcons.grid_on,
-              color: Theme.of(context).backgroundColor,
+              color: _prefTheme.navbarAppvarColor ??
+                  Theme.of(context).backgroundColor,
             ),
             onPressed: () {
               _pref.setArtistListGridView(true);
@@ -70,7 +78,8 @@ class _ArtistListScreenState extends State<ArtistListScreen> {
           IconButton(
             icon: Icon(
               Icons.sort,
-              color: Theme.of(context).backgroundColor,
+              color: _prefTheme.navbarAppvarColor ??
+                  Theme.of(context).backgroundColor,
             ),
             onPressed: () {
               showFloatingModalBottomSheet(
@@ -142,12 +151,14 @@ class _ArtistListScreenState extends State<ArtistListScreen> {
                             title: Text(
                               'Search',
                               style: Constants.kListTileSubTitle.copyWith(
-                                color: Theme.of(context).backgroundColor,
+                                color: _prefTheme.navbarAppvarColor ??
+                                    Theme.of(context).backgroundColor,
                               ),
                             ),
                             leading: Icon(
                               Icons.search,
-                              color: Theme.of(context).backgroundColor,
+                              color: _prefTheme.navbarAppvarColor ??
+                                  Theme.of(context).backgroundColor,
                             ),
                             onTap: () {
                               Navigator.of(context).pushNamed('/search');

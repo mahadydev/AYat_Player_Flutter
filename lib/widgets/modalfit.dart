@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:ayat_player_flutter_player/widgets/create_playlist_dialog.dart';
-
+import '../widgets/create_playlist_dialog.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../provider/audio_player.dart';
 import '../provider/audio_query.dart';
 import 'package:fancy_dialog/FancyAnimation.dart';
@@ -95,6 +95,9 @@ class ModalFit extends StatelessWidget {
                                 _query.addSongsListToPlayList(
                                     songs[index], playListIndex);
                                 Navigator.of(context).pop();
+                                Fluttertoast.showToast(
+                                    msg:
+                                        'Added ${songs[index].title} to ${_query.playlist[playListIndex].name}');
                               },
                             ),
                             itemCount: _query.playlist.length ?? 0,

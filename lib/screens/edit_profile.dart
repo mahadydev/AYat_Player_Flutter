@@ -29,9 +29,8 @@ class _EditProfileState extends State<EditProfile> {
     super.initState();
   }
 
-  Future getImage(SharedPersistantSettings p) async {
-    final pickedFile = await picker.getImage(source: ImageSource.camera);
-    print(pickedFile.path);
+  Future getImage(SharedPersistantSettings p, ImageSource source) async {
+    final pickedFile = await picker.getImage(source: source);
     p.setImage(pickedFile.path);
   }
 
@@ -90,7 +89,7 @@ class _EditProfileState extends State<EditProfile> {
                               ),
                               FlatButton.icon(
                                 onPressed: () {
-                                  getImage(_pref);
+                                  getImage(_pref, ImageSource.gallery);
                                 },
                                 icon: Icon(
                                   Icons.file_upload,
@@ -98,6 +97,19 @@ class _EditProfileState extends State<EditProfile> {
                                 ),
                                 label: Text(
                                   'Upload Photo',
+                                  style: Constants.kAppBarTitleTextStyle,
+                                ),
+                              ),
+                              FlatButton.icon(
+                                onPressed: () {
+                                  getImage(_pref, ImageSource.camera);
+                                },
+                                icon: Icon(
+                                  Icons.camera,
+                                  color: Theme.of(context).accentColor,
+                                ),
+                                label: Text(
+                                  'Camera',
                                   style: Constants.kAppBarTitleTextStyle,
                                 ),
                               ),
@@ -145,14 +157,14 @@ class _EditProfileState extends State<EditProfile> {
                   decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.blue[300],
+                          color: Theme.of(context).accentColor,
                           blurRadius:
-                              10.0, // has the effect of softening the shadow
+                              5.0, // has the effect of softening the shadow
                           spreadRadius:
-                              1.0, // has the effect of extending the shadow
+                              2.0, // has the effect of extending the shadow
                           offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
+                            2, // horizontal, move right 10
+                            2, // vertical, move down 10
                           ),
                         ),
                       ],
@@ -166,7 +178,6 @@ class _EditProfileState extends State<EditProfile> {
                         _pref.setNickEmail(email, name);
                         Navigator.of(context).pop(false);
                       } else {
-                        print('check');
                         showDialog(
                           context: context,
                           child: FancyDialog(
@@ -189,14 +200,14 @@ class _EditProfileState extends State<EditProfile> {
                         Text(
                           'SAVE',
                           style: TextStyle(
-                            color: Colors.lightBlueAccent,
+                            color: Theme.of(context).accentColor,
                             fontSize: 14,
                             fontWeight: FontWeight.w700,
                           ),
                         ),
                         Icon(
                           Icons.arrow_forward,
-                          color: Colors.lightBlueAccent,
+                          color: Theme.of(context).accentColor,
                         ),
                       ],
                     ),

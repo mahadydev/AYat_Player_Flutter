@@ -1,5 +1,6 @@
 import 'dart:io';
-import '../data/sharedpref.dart';
+import 'package:ayat_player_flutter_player/util/theme_constants.dart';
+
 import '../widgets/float_modal.dart';
 import '../widgets/sorting_bottomsheet.dart';
 import 'package:flutter/services.dart';
@@ -28,21 +29,21 @@ class _MusicListState extends State<MusicList> {
   Widget build(BuildContext context) {
     final _query = Provider.of<AudioQuery>(context);
     final _player = Provider.of<AudioPlayer>(context);
-    final _pref = Provider.of<SharedPersistantSettings>(context);
+    final _pref = Provider.of<ThemeConstants>(context);
     return Scaffold(
       appBar: AppBar(
-        brightness: _pref.isDarkMode ? Brightness.light : Brightness.dark,
+        brightness: _pref.isDarkModeON ? Brightness.light : Brightness.dark,
         backgroundColor: Theme.of(context).accentColor,
         title: Text(
           'Music',
           style: Constants.kAppBarTitleTextStyle.copyWith(
-            color: Theme.of(context).backgroundColor,
+            color: _pref.navbarAppvarColor ?? Theme.of(context).backgroundColor,
           ),
         ),
         leading: IconButton(
           icon: Icon(
             MaterialCommunityIcons.menu,
-            color: Theme.of(context).backgroundColor,
+            color: _pref.navbarAppvarColor ?? Theme.of(context).backgroundColor,
           ),
           onPressed: () {
             setState(
@@ -59,14 +60,16 @@ class _MusicListState extends State<MusicList> {
           IconButton(
             icon: Icon(
               Icons.search,
-              color: Theme.of(context).backgroundColor,
+              color:
+                  _pref.navbarAppvarColor ?? Theme.of(context).backgroundColor,
             ),
             onPressed: () => Navigator.of(context).pushNamed('/search'),
           ),
           IconButton(
             icon: Icon(
               Icons.sort,
-              color: Theme.of(context).backgroundColor,
+              color:
+                  _pref.navbarAppvarColor ?? Theme.of(context).backgroundColor,
             ),
             onPressed: () {
               showFloatingModalBottomSheet(

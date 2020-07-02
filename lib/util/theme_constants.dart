@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class ThemeConstants {
-  //Colors for theme
+class ThemeConstants with ChangeNotifier {
+  SharedPreferences _prefs;
+  //Default Colors for theme
   static Color lightPrimary = Color(0xfffcfcff);
   static Color darkPrimary = Colors.black;
   static Color darkAccent = Color(0xffffbd00);
@@ -10,12 +12,49 @@ class ThemeConstants {
   static Color lightBG = Color(0xfffcfcff);
   static Color darkBG = Colors.black;
 
+  //for changing the accent
+  Color _accentColor;
+  Color _navbarAppvarColor;
+  Color get accentColor => _accentColor;
+  Color get navbarAppvarColor => _navbarAppvarColor;
+  ThemeData _themeData = lightTheme;
+  ThemeData get themeData => _themeData;
+  bool _isDarkModeON = false;
+  bool get isDarkModeON => _isDarkModeON;
+
+  ThemeConstants() {
+    initThemeConstant();
+  }
+  initThemeConstant() async {
+    if (_prefs == null) _prefs = await SharedPreferences.getInstance();
+    _isDarkModeON = _prefs.getBool('isDarkModeOn') ?? false;
+    _accentColor = Color(_prefs.getInt('color') ?? lightAccent.value);
+    _navbarAppvarColor =
+        Color(_prefs.getInt('navbarappbar') ?? Colors.white.value);
+    toggleTheme(_isDarkModeON);
+  }
+
+  toggleTheme(value) async {
+    _isDarkModeON = value;
+    _themeData = isDarkModeON ? darkTheme : lightTheme;
+    await _prefs.setBool('isDarkModeOn', _isDarkModeON);
+    notifyListeners();
+  }
+
+  setAccentColor(Color ac) async {
+    _accentColor = ac;
+    await _prefs.setInt('color', _accentColor.value);
+    notifyListeners();
+  }
+
+  setNavIconAndAppbarTextColor(Color color) async {
+    _navbarAppvarColor = color;
+    await _prefs.setInt('navbarappbar', _navbarAppvarColor.value);
+    notifyListeners();
+  }
+
   static ThemeData lightTheme = ThemeData(
     visualDensity: VisualDensity.adaptivePlatformDensity,
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: lightAccent,
-      highlightElevation: 5,
-    ),
     backgroundColor: lightBG,
     primaryColor: lightPrimary,
     accentColor: lightAccent,
@@ -51,10 +90,6 @@ class ThemeConstants {
 
   static ThemeData darkTheme = ThemeData(
     visualDensity: VisualDensity.adaptivePlatformDensity,
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: darkAccent,
-      highlightElevation: 5,
-    ),
     backgroundColor: darkBG,
     primaryColor: darkPrimary,
     accentColor: darkAccent,
@@ -66,6 +101,7 @@ class ThemeConstants {
     appBarTheme: AppBarTheme(
       elevation: 0,
     ),
+    cardColor: Colors.grey.withOpacity(0.2),
     textTheme: TextTheme(
       bodyText1: TextStyle(
         color: Colors.white,

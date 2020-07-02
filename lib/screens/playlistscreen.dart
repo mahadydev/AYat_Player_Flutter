@@ -1,8 +1,8 @@
+import 'package:ayat_player_flutter_player/util/theme_constants.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../widgets/create_playlist_dialog.dart';
 import '../widgets/emptyscreen_widget.dart';
-import '../data/sharedpref.dart';
 import '../screens/playlist_to_songList.dart';
 import '../util/constants.dart';
 import '../widgets/custom_drawer.dart';
@@ -23,22 +23,23 @@ class _PlayListScreenState extends State<PlayListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final _pref = Provider.of<SharedPersistantSettings>(context);
+    final _pref = Provider.of<ThemeConstants>(context);
     final _query = Provider.of<AudioQuery>(context);
     return Scaffold(
       appBar: AppBar(
-        brightness: _pref.isDarkMode ? Brightness.light : Brightness.dark,
+        brightness: _pref.isDarkModeON ? Brightness.light : Brightness.dark,
         backgroundColor: Theme.of(context).accentColor,
         title: Text(
           'Playlist',
-          style: Constants.kAppBarTitleTextStyle
-              .copyWith(color: Theme.of(context).backgroundColor),
+          style: Constants.kAppBarTitleTextStyle.copyWith(
+              color:
+                  _pref.navbarAppvarColor ?? Theme.of(context).backgroundColor),
         ),
         automaticallyImplyLeading: false,
         leading: IconButton(
           icon: Icon(
             MaterialCommunityIcons.menu,
-            color: Theme.of(context).backgroundColor,
+            color: _pref.navbarAppvarColor ?? Theme.of(context).backgroundColor,
           ),
           onPressed: () {
             setState(() {
@@ -51,7 +52,8 @@ class _PlayListScreenState extends State<PlayListScreen> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.playlist_add,
-                color: Theme.of(context).backgroundColor),
+                color: _pref.navbarAppvarColor ??
+                    Theme.of(context).backgroundColor),
             onPressed: () async {
               showDialog(
                 context: context,

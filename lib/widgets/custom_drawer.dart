@@ -19,7 +19,7 @@ class CustomDrawer extends StatelessWidget {
 
     MediaQueryData mediaQuery = MediaQuery.of(context);
     return Container(
-      color: Theme.of(context).cardColor,
+      color: Theme.of(context).backgroundColor,
       width: mediaQuery.size.width * 0.60,
       height: mediaQuery.size.height,
       child: Column(
