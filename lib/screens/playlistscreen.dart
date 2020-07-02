@@ -1,6 +1,5 @@
-import 'package:ayat_player_flutter_player/util/theme_constants.dart';
+import '../util/theme_constants.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 import '../widgets/create_playlist_dialog.dart';
 import '../widgets/emptyscreen_widget.dart';
 import '../screens/playlist_to_songList.dart';

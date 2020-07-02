@@ -1,8 +1,7 @@
-import 'package:ayat_player_flutter_player/model/iap.dart';
-import 'package:ayat_player_flutter_player/util/theme_constants.dart';
+import '../model/iap.dart';
+import '../util/theme_constants.dart';
 import 'package:flutter_material_color_picker/flutter_material_color_picker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 import '../data/sharedpref.dart';
 import '../screens/custom_radio.dart';
 import '../util/constants.dart';

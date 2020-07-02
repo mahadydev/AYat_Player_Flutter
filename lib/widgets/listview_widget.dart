@@ -13,7 +13,7 @@ class ListTileWidget extends StatelessWidget {
       title: Text(title, style: Constants.kListTileTitle),
       subtitle: Text(sub, style: Constants.kListTileSubTitle),
       leading: Hero(
-        tag: imagePath,
+        tag: imagePath ?? title,
         child: CircleAvatar(
           backgroundImage: imagePath != null
               ? FileImage(File(imagePath))

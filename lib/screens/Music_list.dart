@@ -1,6 +1,5 @@
 import 'dart:io';
-import 'package:ayat_player_flutter_player/util/theme_constants.dart';
-
+import '../util/theme_constants.dart';
 import '../widgets/float_modal.dart';
 import '../widgets/sorting_bottomsheet.dart';
 import 'package:flutter/services.dart';
@@ -208,6 +207,8 @@ class _MusicListState extends State<MusicList> {
                               : CircleAvatar(
                                   backgroundColor:
                                       Theme.of(context).accentColor,
+                                  backgroundImage:
+                                      AssetImage('assets/empty.png'),
                                 ),
                           title: Text(_query.songs[index].title),
                           subtitle: Text(_query.songs[index].artist),

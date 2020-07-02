@@ -27,7 +27,6 @@ class NowPlaying extends StatelessWidget {
     final AudioPlayer _audio = Provider.of<AudioPlayer>(context);
     final SharedPersistantSettings _pref =
         Provider.of<SharedPersistantSettings>(context);
-
     return Scaffold(
       body: SafeArea(
         child: SizedBox.expand(
@@ -48,7 +47,10 @@ class NowPlaying extends StatelessWidget {
                           child: _audio.currentlyPlaying != null &&
                                   _audio.currentlyPlaying.audio.metas.image
                                           .path !=
-                                      null
+                                      null &&
+                                  _audio.currentlyPlaying.audio.metas.image
+                                          .path !=
+                                      'assets/empty.png'
                               ? Image.file(
                                   File(_audio
                                       .currentlyPlaying.audio.metas.image.path),

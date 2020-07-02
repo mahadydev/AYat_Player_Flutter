@@ -1,5 +1,4 @@
-import 'package:ayat_player_flutter_player/util/theme_constants.dart';
-
+import '../util/theme_constants.dart';
 import '../data/sharedpref.dart';
 import '../util/constants.dart';
 import '../widgets/custom_drawer.dart';

@@ -1,4 +1,4 @@
-import 'package:ayat_player_flutter_player/util/theme_constants.dart';
+import '../util/theme_constants.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Constants {
   static const String appName = 'AYaT Player';
-  static const String appVersion = '1.4.0';
+  static const String appVersion = '1.4.1';
   static const String privacyPolicyUrl =
       'https://mahadydev.github.io/privacy-policy/ayat-player-privacy-policy.html';
 

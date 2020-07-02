@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:assets_audio_player/assets_audio_player.dart';
-import 'package:ayat_player_flutter_player/util/theme_constants.dart';
+import '../util/theme_constants.dart';
 import '../data/sharedpref.dart';
 import '../provider/audio_player.dart';
 import '../widgets/nowplaying_icon.dart';
@@ -82,7 +82,10 @@ class _NowPlayingNewState extends State<NowPlayingNew>
                             child: _audio.currentlyPlaying != null &&
                                     _audio.currentlyPlaying.audio.metas.image
                                             .path !=
-                                        null
+                                        null &&
+                                    _audio.currentlyPlaying.audio.metas.image
+                                            .path !=
+                                        'assets/empty.png'
                                 ? Image.file(File(_audio
                                     .currentlyPlaying.audio.metas.image.path))
                                 : Image.asset('assets/empty.png',
