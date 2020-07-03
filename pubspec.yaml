@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.4.1+20200703
+version: 1.5.1+20200704
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -26,7 +26,7 @@ dependencies:
   fancy_dialog: ^1.0.3
   image_picker: ^0.6.7+2
   swipedetector: ^1.2.0
-  assets_audio_player: ^2.0.5+5
+  assets_audio_player: ^2.0.7+8
   flappy_search_bar: ^1.7.2
   url_launcher: ^5.4.11
   modal_bottom_sheet: ^0.1.6+1
@@ -34,7 +34,8 @@ dependencies:
   fluttertoast: ^4.0.1
   share_extend: ^1.1.7
   flutter_material_color_picker: ^1.0.5
-
+  equalizer: ^0.0.2+1
+  flutter_xlider:
   
 dev_dependencies: 
   flutter_test:

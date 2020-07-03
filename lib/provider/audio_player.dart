@@ -16,6 +16,7 @@ class AudioPlayer with ChangeNotifier {
   LoopMode loopMode = LoopMode.none;
   PlayerState playerState = PlayerState.stop;
   PlayingAudio currentlyPlaying;
+  int audioSessionId;
 
   AudioPlayer() {
     initPlayer();
@@ -28,6 +29,10 @@ class AudioPlayer with ChangeNotifier {
     // _subscriptions
     //     .add(assetsAudioPlayer.playlistAudioFinished.listen((finished) {
     // }));
+    _subscriptions.add(assetsAudioPlayer.audioSessionId.listen((id) {
+      audioSessionId = id;
+      notifyListeners();
+    }));
     _subscriptions.add(assetsAudioPlayer.current.listen((playing) {
       currentSongDuration = playing.audio.duration;
       notifyListeners();

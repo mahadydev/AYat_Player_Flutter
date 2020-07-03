@@ -1,3 +1,4 @@
+import 'provider/eq.dart';
 import 'provider/audio_player.dart';
 import 'util/constants.dart';
 import 'package:flutter/services.dart';
@@ -29,6 +30,7 @@ class AyatPlayer extends StatelessWidget {
         ChangeNotifierProvider.value(value: SharedPersistantSettings()),
         ChangeNotifierProvider.value(value: AudioQuery()),
         ChangeNotifierProvider.value(value: AudioPlayer()),
+        ChangeNotifierProvider.value(value: Eq()),
       ],
       child: Consumer<ThemeConstants>(
         builder: (context, ThemeConstants themeConstants, _) => MaterialApp(

@@ -286,18 +286,32 @@ class _NowPlayingNewState extends State<NowPlayingNew>
                                             Icons.volume_up,
                                             color: Colors.white,
                                           ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              _audio.loopSong();
-                                            },
-                                            child: Icon(
-                                              Icons.loop,
-                                              color: _audio.loopMode ==
-                                                      LoopMode.single
-                                                  ? Colors.white
-                                                  : Colors.grey,
+                                          if (_audio.loopMode ==
+                                              LoopMode.single)
+                                            GestureDetector(
+                                              onTap: () {
+                                                _audio.loopSong();
+                                              },
+                                              child: Icon(Icons.repeat_one,
+                                                  color: Colors.white),
                                             ),
-                                          ),
+                                          if (_audio.loopMode == LoopMode.none)
+                                            GestureDetector(
+                                              onTap: () {
+                                                _audio.loopSong();
+                                              },
+                                              child: Icon(Icons.repeat,
+                                                  color: Colors.grey),
+                                            ),
+                                          if (_audio.loopMode ==
+                                              LoopMode.playlist)
+                                            GestureDetector(
+                                              onTap: () {
+                                                _audio.loopSong();
+                                              },
+                                              child: Icon(Icons.repeat,
+                                                  color: Colors.white),
+                                            ),
                                         ],
                                       ),
                                     )

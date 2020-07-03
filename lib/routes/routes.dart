@@ -8,6 +8,7 @@ import '../screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import '../screens/artist_to_songList.dart';
 import '../screens/search.dart';
+import '../screens/equalizer.dart';
 
 final routes = {
   '/': (BuildContext context) => SplashScreen(),
@@ -19,4 +20,5 @@ final routes = {
   '/profile': (BuildContext context) => EditProfile(),
   '/songfromartist': (BuildContext context) => SongListFromArtist(),
   '/search': (BuildContext context) => SearchScreen(),
+  '/equalizer': (BuildContext context) => EqualizerScreen(),
 };

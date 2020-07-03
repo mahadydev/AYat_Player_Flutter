@@ -191,19 +191,35 @@ class NowPlaying extends StatelessWidget {
                                 _audio.assetsAudioPlayer.next();
                               },
                             ),
-                            NowPlayingIcon(
-                              height: 50,
-                              icon: Icon(
-                                Icons.repeat_one,
-                                size: 35,
-                                color: _audio.loopMode == LoopMode.single
-                                    ? Theme.of(context).accentColor
-                                    : Colors.grey,
+                            if (_audio.loopMode == LoopMode.single)
+                              NowPlayingIcon(
+                                height: 50,
+                                icon: Icon(Icons.repeat_one,
+                                    size: 35,
+                                    color: Theme.of(context).accentColor),
+                                ontap: () {
+                                  _audio.loopSong();
+                                },
                               ),
-                              ontap: () {
-                                _audio.loopSong();
-                              },
-                            ),
+                            if (_audio.loopMode == LoopMode.playlist)
+                              NowPlayingIcon(
+                                height: 50,
+                                icon: Icon(Icons.repeat,
+                                    size: 35,
+                                    color: Theme.of(context).accentColor),
+                                ontap: () {
+                                  _audio.loopSong();
+                                },
+                              ),
+                            if (_audio.loopMode == LoopMode.none)
+                              NowPlayingIcon(
+                                height: 50,
+                                icon: Icon(Icons.repeat,
+                                    size: 35, color: Colors.grey),
+                                ontap: () {
+                                  _audio.loopSong();
+                                },
+                              ),
                           ],
                         ),
                       ),

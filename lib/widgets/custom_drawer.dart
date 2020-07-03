@@ -91,6 +91,21 @@ class CustomDrawer extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
+              Navigator.of(context).pushNamed('/equalizer');
+              closeDrawer();
+            },
+            leading: Icon(
+              Icons.equalizer,
+              color: Theme.of(context).accentColor,
+            ),
+            title: Text("Equalizer"),
+          ),
+          Divider(
+            height: 1,
+            color: Theme.of(context).accentColor,
+          ),
+          ListTile(
+            onTap: () {
               SystemNavigator.pop();
             },
             leading: Icon(

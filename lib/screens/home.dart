@@ -1,5 +1,5 @@
+import 'package:equalizer/equalizer.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-
 import '../provider/audio_player.dart';
 import '../screens/artist_list_screen.dart';
 import 'package:move_to_background/move_to_background.dart';
@@ -26,6 +26,7 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     _pageController = PageController(initialPage: 0);
+    Equalizer.init(0);
     super.initState();
   }
 
@@ -35,7 +36,7 @@ class _HomeState extends State<Home> {
         .assetsAudioPlayer
         .dispose();
     _pageController.dispose();
-    print('disposed');
+    Equalizer.release();
     super.dispose();
   }
 
