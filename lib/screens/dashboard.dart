@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import '../widgets/custom_drawer.dart';
 import 'package:foldable_sidebar/foldable_sidebar.dart';
 import 'package:swipedetector/swipedetector.dart';
@@ -103,20 +102,29 @@ class _DashBoardState extends State<DashBoard> {
                       ],
                     ),
                     _pref.photo.isEmpty || _pref.photo == null
-                        ? CircleAvatar(
-                            backgroundImage: AssetImage(
-                              'assets/empty.png',
+                        ? GestureDetector(
+                            onTap: () =>
+                                Navigator.of(context).pushNamed('/profile'),
+                            child: CircleAvatar(
+                              backgroundImage: AssetImage(
+                                'assets/empty.png',
+                              ),
+                              radius: 30,
                             ),
-                            radius: 30,
                           )
-                        : CircleAvatar(
-                            backgroundImage: FileImage(File(_pref.photo)),
-                            radius: 30,
+                        : GestureDetector(
+                            onTap: () =>
+                                Navigator.of(context).pushNamed('/profile'),
+                            child: CircleAvatar(
+                              backgroundImage: FileImage(File(_pref.photo)),
+                              radius: 30,
+                            ),
                           ),
                   ],
                 ),
                 SizedBox(height: 20),
                 if (_pref.isCarousel) DashBoardCarousel(),
+                SizedBox(height: 10),
                 _query.songs.length > 0
                     ? Container(
                         margin: const EdgeInsets.only(top: 20),

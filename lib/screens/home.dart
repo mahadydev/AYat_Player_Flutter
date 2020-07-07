@@ -25,19 +25,19 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
+    super.initState();
     _pageController = PageController(initialPage: 0);
     Equalizer.init(0);
-    super.initState();
   }
 
   @override
   void dispose() {
+    super.dispose();
     Provider.of<AudioPlayer>(context, listen: false)
         .assetsAudioPlayer
         .dispose();
     _pageController.dispose();
     Equalizer.release();
-    super.dispose();
   }
 
   @override

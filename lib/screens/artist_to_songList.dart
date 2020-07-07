@@ -172,7 +172,7 @@ class SongListFromArtist extends StatelessWidget {
                                   builder: (context, scrollController) =>
                                       ModalFit(
                                     scrollController: scrollController,
-                                    songs: _query.currentSongListforAlbum,
+                                    songs: _query.currentSongListforArtist,
                                     index: index,
                                     audio: _audio,
                                   ),

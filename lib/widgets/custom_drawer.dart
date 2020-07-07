@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class CustomDrawer extends StatelessWidget {
   final Function closeDrawer;
@@ -22,7 +21,7 @@ class CustomDrawer extends StatelessWidget {
       color: Theme.of(context).backgroundColor,
       width: mediaQuery.size.width * 0.60,
       height: mediaQuery.size.height,
-      child: Column(
+      child: ListView(
         children: <Widget>[
           Container(
             width: double.infinity,
@@ -114,28 +113,6 @@ class CustomDrawer extends StatelessWidget {
             ),
             title: Text("Exit"),
           ),
-          Divider(
-            height: 1,
-            color: Theme.of(context).accentColor,
-          ),
-          Spacer(),
-          ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Colors.transparent,
-              child: Image.asset(
-                'assets/logo.png',
-                fit: BoxFit.contain,
-              ),
-            ),
-            subtitle: Text('V ${Constants.appVersion}'),
-            onTap: () async {
-              if (await canLaunch(Constants.changeLog)) {
-                await launch(Constants.changeLog);
-              } else {
-                throw 'Could not launch ${Constants.changeLog}';
-              }
-            },
-          )
         ],
       ),
     );

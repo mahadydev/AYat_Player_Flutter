@@ -221,6 +221,7 @@ class _SettingsState extends State<Settings> {
                       ),
                     ),
                     ListTile(
+                      isThreeLine: true,
                       title: Text(
                         'Carousel Slider',
                         style: Constants.kListTileTitle,
@@ -242,7 +243,7 @@ class _SettingsState extends State<Settings> {
                     Divider(),
                     ListTile(
                       title: Text(
-                        'Home Album Grid',
+                        'Dashboard Album List',
                         style: Constants.kListTileTitle,
                       ),
                       subtitle: Text(
@@ -325,6 +326,7 @@ class _SettingsState extends State<Settings> {
                     ),
                     Divider(),
                     ListTile(
+                      isThreeLine: true,
                       leading: Icon(
                         MaterialIcons.rate_review,
                         color: Theme.of(context).accentColor,
@@ -343,6 +345,7 @@ class _SettingsState extends State<Settings> {
                     ),
                     Divider(),
                     ListTile(
+                      isThreeLine: true,
                       leading: Icon(
                         MaterialIcons.card_giftcard,
                         color: Theme.of(context).accentColor,
@@ -373,6 +376,7 @@ class _SettingsState extends State<Settings> {
                     ),
                     Divider(),
                     ListTile(
+                      isThreeLine: true,
                       leading: Icon(
                         MaterialIcons.bug_report,
                         color: Theme.of(context).accentColor,
@@ -396,6 +400,7 @@ class _SettingsState extends State<Settings> {
                     ),
                     Divider(),
                     ListTile(
+                      isThreeLine: true,
                       leading: Icon(
                         MaterialIcons.share,
                         color: Theme.of(context).accentColor,
